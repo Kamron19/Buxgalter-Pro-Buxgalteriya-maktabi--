@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин мужской одежды</title>
+    <style>
+        /* Общие стили */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Контейнер */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Шапка */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Навигация */
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+        }
+
+        /* Секция каталога */
+        section#catalog {
+            padding: 40px 0;
+        }
+
+        .filter {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .slider {
+            width: 100%;
+            height: 10px;
+            border-radius: 5px;
+            background: linear-gradient(to right, #00aaff, #ff7e5f);
+        }
+
+        /* Карточки товара */
+        .product-item {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+            margin: 15px;
+            width: 22%;
+        }
+
+        .product-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .product-item h3 {
+            font-size: 18px;
+            color: #555;
+            margin-top: 15px;
+        }
+
+        .product-item p.price {
+            font-size: 16px;
+            color: #777;
+        }
+
+        .product-item button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .product-item button:hover {
+            background-color: #555;
+        }
+
+        /* Адаптивность */
+        @media screen and (max-width: 768px) {
+            .product-item {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 5px 0;
+            }
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>Магазин одежды</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#catalog">Каталог</a></li>
+                <li><a href="#cart">Корзина</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section id="home">
+    <div class="container">
+        <h2>Добро пожаловать в наш магазин!</h2>
+        <p>Лучшие товары для стильных мужчин.</p>
+    </div>
+</section>
+
+<section id="catalog">
+    <div class="container">
+        <h2>Каталог товаров</h2>
+        <div class="filter">
+            <h4>Фильтр по цене</h4>
+            <input type="range" min="0" max="10000" value="5000" class="slider" id="priceRange">
+            <div id="priceValue" class="price-value">Цена: 5000 руб.</div>
+        </div>
+        <div class="product-list" style="display: flex; flex-wrap: wrap;">
+            <div class="product-item">
+                <img src="product1.jpg" alt="Мужская рубашка" class="product-image">
+                <h3>Мужская рубашка</h3>
+                <p class="price">1000 руб.</p>
+                <button onclick="addToCart('Мужская рубашка', 1000)">Добавить в корзину</button>
+            </div>
+            <div class="product-item">
+                <img src="product2.jpg" alt="Брюки" class="product-image">
+                <h3>Брюки</h3>
+                <p class="price">1500 руб.</p>
+                <button onclick="addToCart('Брюки', 1500)">Добавить в корзину</button>
+            </div>
+            <!-- Добавьте больше товаров здесь -->
+        </div>
+    </div>
+</section>
+
+<section id="cart">
+    <div class="container">
+        <h2>Ваша корзина</h2>
+        <ul id="cartItems">
+            <!-- Здесь будут отображаться товары корзины -->
+        </ul>
+        <p id="totalPrice">Итого: 0 руб.</p>
+        <button>Оформить заказ</button>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 Магазин одежды</p>
+    </div>
+</footer>
+
+<script>
+    let cart = [];
+    let totalPrice = 0;
+
+    function addToCart(productName, price) {
+        cart.push({name: productName, price: price});
+        totalPrice += price;
+        updateCart();
+    }
+
+    function updateCart() {
+        const cartItemsList = document.getElementById("cartItems");
+        cartItemsList.innerHTML = '';
+        cart.forEach(item => {
+            const listItem = document.createElement("li");
+            listItem.textContent = `${item.name} - ${item.price} руб.`;
+            cartItemsList.appendChild(listItem);
+        });
+        document.getElementById("totalPrice").textContent = `Итого: ${totalPrice} руб.`;
+    }
+
+    // Функция для обновления значения цены в фильтре
+    const priceRange = document.getElementById("priceRange");
+    const priceValue = document.getElementById("priceValue");
+
+    priceRange.addEventListener("input", function() {
+        priceValue.textContent = `Цена: ${priceRange.value} руб.`;
+    });
+</script>
+
+</body>
+</html>
